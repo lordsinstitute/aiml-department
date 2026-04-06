@@ -1,0 +1,49 @@
+name: Comment Automation (Faculty Verification)
+
+on:
+  issue_comment:
+    types: [created]
+
+permissions:
+  issues: write
+  pull-requests: write
+  contents: read
+
+jobs:
+  verification-detection:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Detect faculty verification comment
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const comment = context.payload.comment.body.toLowerCase();
+            const issue = context.payload.issue;
+
+            // Ensure it's a PR (not a normal issue)
+            if (!issue.pull_request) return;
+
+            // Check for verification phrase
+            if (comment.includes("project reviewed by")) {
+
+              const prNumber = issue.number;
+              const owner = context.repo.owner;
+              const repo = context.repo.repo;
+
+              // 🏷️ Add "verified" label
+              await github.rest.issues.addLabels({
+                issue_number: prNumber,
+                owner: owner,
+                repo: repo,
+                labels: ["verified"]
+              });
+
+              // 💬 Confirmation comment
+              await github.rest.issues.createComment({
+                issue_number: prNumber,
+                owner: owner,
+                repo: repo,
+                body: "✅ Project marked as **Verified** by faculty. Forwarded for final merge."
+              });
+            }

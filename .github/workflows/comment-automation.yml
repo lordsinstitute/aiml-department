@@ -30,7 +30,7 @@ jobs:
             console.log(`Comment received on PR #${issue.number}: "${context.payload.comment.body}"`);
 
             // Check for verification phrase
-            if (!comment.includes("project reviewed by")) {
+            if (!comment.includes("requires maintainer review")) {
               console.log('Skipping: comment does not contain "project reviewed by".');
               return;
             }

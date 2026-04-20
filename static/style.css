@@ -1,0 +1,41 @@
+body {
+    background: #0f172a;
+    color: white;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    width: 400px;
+    margin: 50px auto;
+    text-align: center;
+    background: #020617;
+    padding: 30px;
+    border-radius: 15px;
+}
+
+img {
+    max-width: 100%;
+    margin-top: 15px;
+    border-radius: 10px;
+}
+
+button {
+    margin-top: 15px;
+    padding: 10px 20px;
+    border: none;
+    background: #3b82f6;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.badge {
+    display: inline-block;
+    padding: 10px 20px;
+    margin-top: 15px;
+    font-size: 20px;
+    border-radius: 10px;
+}
+
+.AI { background: #ef4444; }
+.REAL { background: #22c55e; }

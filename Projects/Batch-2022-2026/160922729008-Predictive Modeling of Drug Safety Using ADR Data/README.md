@@ -38,7 +38,6 @@ A full-stack web application that combines machine learning with real-world ADR 
 1. **Clone the repository**
 ```bash
 git clone <your-repo-url>
-cd D1
 ```
 
 2. **Install Python dependencies**
